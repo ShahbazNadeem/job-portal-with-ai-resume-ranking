@@ -1,21 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
-body {
-    background-color: #ECECEC;
+@utility container {
+  margin: auto;
 }
 
+:root {
+  --background: #f8f8f8;
+  --foreground: #171717;
+  --primary: #989898;
+  --body: #090b0c;
+  --secondary: #ffffff;
+  --whitecolor: #ffffff;
+  --text: #737373;
+  /* #B8B8B8 */
+  --backgorund: #1a2b48;
+  --accent: #000000;
+  --border: #e4e6e8;
+  /* global font  */
+  --font-roboto: "Roboto", sans-serif;
+  --font-arimo: "Arimo", sans-serif;
+}
+
+body {
+  background-color: #ECECEC;
+}
+
+ul {
+  font-family: var(--font-roboto);
+}
+
+
 button {
-    background: linear-gradient(90deg, rgba(206, 159, 252, 1) 11%, rgba(165, 130, 247, 1) 51%, rgba(115, 103, 240, 1) 92%);
-    padding:  8px 20px;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
+  background: linear-gradient(90deg, rgba(206, 159, 252, 1) 11%, rgba(165, 130, 247, 1) 51%, rgba(115, 103, 240, 1) 92%);
+  padding: 8px 20px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .btn-gradient-border {
-  @apply cursor-pointer relative inline-flex items-center p-0.5 justify-center 
-         overflow-hidden text-sm font-medium rounded-md 
-         bg-gradient-to-br from-purple-500 to-pink-500;
+  @apply cursor-pointer relative inline-flex items-center p-0.5 justify-center overflow-hidden text-sm font-medium rounded-md bg-gradient-to-br from-purple-500 to-pink-500;
 }
 
 .btn-gradient-border-inner {
