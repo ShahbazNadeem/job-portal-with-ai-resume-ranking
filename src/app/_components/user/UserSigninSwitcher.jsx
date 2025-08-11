@@ -11,7 +11,7 @@ const UserSigninSwitcher = () => {
     }, [login]);
 
     return (
-        <>
+        <div className='px-5'>
             {login ? <Suspense><UserLogin /></Suspense> : <UserSignup />}
             <span className="flex justify-center cursor-pointer text-white"
                 onClick={() => setLogin(!login)} >
@@ -19,7 +19,7 @@ const UserSigninSwitcher = () => {
                     ? "Don't have an Account? Sign Up"
                     : 'Already have an Account? Login'}
             </span>
-        </>
+        </div>
     )
 }
 

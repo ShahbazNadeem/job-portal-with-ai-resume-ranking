@@ -1,28 +1,66 @@
-import React from 'react'
+'use client'
+import { Icons } from '@/data/Imports'
+import Link from 'next/link';
+import React, { useState } from 'react'
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className='px-5 py-2 bg-white '>
-      <div className="container flex justify-between items-center">
-        <div className="flex justify-center items-center"><figure className='w-[50px] h-[50px]'><img src="/images/logo/logoTest.png" alt="logo" className='w-full h-auto' /></figure></div>
+    <>
+      <div className='px-5 py-2 bg-white '>
+        <div className="container flex justify-between items-center">
+          <span className='md:hidden'><Icons.menuIcon size={28} onClick={() => setIsOpen(true)} /></span>
+          <div className="flex justify-center items-center"><figure className='w-[35px] h-[35px] md:w-[50px] md:h-[50px]'><img src="/images/logo/logoTest.png" alt="logo" className='w-full h-auto' /></figure></div>
 
-        <ul className='flex gap-10'>
-          <li>Home</li>
-          <li>About us</li>
-          <li>Contact us</li>
-        </ul>
+          <ul className='hidden md:flex gap-10'>
+            <li><Link href='/'>Home</Link></li>
+            <li><Link href='/about-us'>About us</Link></li>
+            <li><Link href='contact-us'>Contact us</Link></li>
+          </ul>
 
-        <div className="flex gap-2">
-          <button>Sign in</button>
-          <span className="btn-gradient-border">
-            <span className="btn-gradient-border-inner">
-              Get Registered
-            </span>
+          <div className="flex gap-2">
+            <Link href='/user-signin'><button>Sign in</button></Link>
+            <div className="hidden md:block">
+              <span className="btn-gradient-border ">
+                <span className="btn-gradient-border-inner">
+                  Get Registered
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {isOpen && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300"
+          onClick={() => setIsOpen(false)}>
+        </div>
+      )}
+
+      {/* Off-Canvas Drawer */}
+      <div className={`bg-[#F8F8F8] fixed top-0 left-0 z-50 h-screen p-4 overflow-y-auto w-80 transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
+        <div className="flex justify-between items-center">
+          <figure className="w-12 h-12">
+            <img src="/images/logo/logoTest.png" alt="Logo" className="w-full h-full" />
+          </figure>
+          <span onClick={() => setIsOpen(false)} className=" text-gray-400 ">
+            <Icons.close size={28} />
           </span>
         </div>
 
+        <div className="py-10 px-2 flex flex-col gap-10">
+          <ul className="flex flex-col gap-5 font-marcellus text-[16]">
+            <li><Link href='/'>Home</Link></li>
+            <li><Link href='/about-us'>About us</Link></li>
+            <li><Link href='contact-us'>Contact us</Link></li>
+          </ul>
+        </div>
+        <Link href='/' className='text-blue-600 underline'>
+          Register
+        </Link>
       </div>
-    </div>
+    </>
   )
 }
 
