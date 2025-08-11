@@ -10,7 +10,7 @@ const Header = () => {
       <div className='px-5 py-2 bg-white '>
         <div className="container flex justify-between items-center">
           <span className='md:hidden'><Icons.menuIcon size={28} onClick={() => setIsOpen(true)} /></span>
-          <div className="flex justify-center items-center"><figure className='w-[35px] h-[35px] md:w-[50px] md:h-[50px]'><img src="/images/logo/logoTest.png" alt="logo" className='w-full h-auto' /></figure></div>
+          <div className="flex justify-center items-center"><figure className='w-[35px] h-[35px] md:w-[50px] md:h-[50px]'><Link href="/"><img src="/images/logo/logoTest.png" alt="logo" className='w-full h-auto' /></Link></figure></div>
 
           <ul className='hidden md:flex gap-10'>
             <li><Link href='/'>Home</Link></li>

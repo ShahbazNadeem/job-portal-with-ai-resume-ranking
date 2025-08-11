@@ -12,10 +12,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "Job Portal",
-  description: "",
-};
+// export const metadata = {
+//   title: "Job Portal",
+//   description: "",
+// };
 
 export default function RootLayout({ children }) {
   return (
