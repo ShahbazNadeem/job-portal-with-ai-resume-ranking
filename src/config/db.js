@@ -7,14 +7,14 @@ export const db = mysql.createPool({
     database: "demo",
 })
 
-try {
-    const connection = await db.getConnection()
-    console.log("Database connected successfully")
-    connection.release();
+// try {
+//     const connection = await db.getConnection()
+//     console.log("Database connected successfully")
+//     connection.release();
 
-} catch (error) {
-    console.log("database connection failed", error)
-    process.exit(1)
+// } catch (error) {
+//     console.log("database connection failed", error)
+//     process.exit(1)
 
-}
+// }
 // mysql.createConnection()
