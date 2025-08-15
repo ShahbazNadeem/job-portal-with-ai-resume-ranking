@@ -23,24 +23,24 @@ export default function UsersPage() {
     e.preventDefault();
     setMessage("");
 
-    try {
-      const res = await fetch("/api/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+    // try {
+    //   const res = await fetch("/api/users", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(form),
+    //   });
 
-      const data = await res.json();
-      if (res.ok) {
-        setMessage("✅ User added successfully!");
-        setForm({ UserName: "", UserAge: "", Useremail: "" });
-      } else {
-        setMessage(`❌ ${data.message}`);
-      }
-    } catch (error) {
-      console.error(error);
-      setMessage("❌ Failed to add user");
-    }
+    //   const data = await res.json();
+    //   if (res.ok) {
+    //     setMessage("✅ User added successfully!");
+    //     setForm({ UserName: "", UserAge: "", Useremail: "" });
+    //   } else {
+    //     setMessage(`❌ ${data.message}`);
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    //   setMessage("❌ Failed to add user");
+    // }
   };
 
   return (
