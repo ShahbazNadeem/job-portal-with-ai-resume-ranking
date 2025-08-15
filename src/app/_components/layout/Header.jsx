@@ -21,8 +21,8 @@ const Header = () => {
           <div className="flex gap-2">
             <Link href='/user-signin'><button>Sign in</button></Link>
             <div className="hidden md:block">
-              <span className="btn-gradient-border ">
-                <span className="btn-gradient-border-inner">
+              <span className="btn-gradient-border">
+                <span className="btn-gradient-border-inner bg-white">
                   Get Registered
                 </span>
               </span>
