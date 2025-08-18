@@ -2,8 +2,15 @@
 
 import { useState } from "react";
 import Layout from "../_components/layout/Layout";
+import { useAdmin } from "@/context/AdminContext";
+import AdminLogin from "../_components/admin/AdminLogin";
+import Lottie from "lottie-react";
+import adminLogin from '../../../public/images/lottieFiles/adminLogin.json'
 
-export default function UsersPage() {
+export default function Page() {
+
+  const { admin } = useAdmin()
+
   const [form, setForm] = useState({
     UserName: "",
     UserAge: "",
@@ -43,9 +50,20 @@ export default function UsersPage() {
     // }
   };
 
+  if (!admin) {
+    return (
+      <div className="container">
+        <div className="min-h-screen flex justify-center items-center">
+          <div className="basis-[50%] flex justify-center items-center"><Lottie animationData={adminLogin} /></div>
+          <div className="basis-[50%] flex justify-center items-center"><AdminLogin /></div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <Layout>
-      <section className="min-h-screen">
+      {/* <section className="min-h-screen">
 
         <div className="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg p-6">
           <h1 className="text-2xl font-bold mb-4 text-center">Add New User</h1>
@@ -89,7 +107,7 @@ export default function UsersPage() {
 
           {message && <p className="mt-4 text-center">{message}</p>}
         </div>
-      </section>
+      </section> */}
     </Layout>
   );
 }

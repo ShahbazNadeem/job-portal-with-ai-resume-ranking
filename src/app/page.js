@@ -79,10 +79,10 @@ export default function Home() {
             <span className="basis-[50%] flex justify-center items-center"><figure className="w-[300px] md:w-[400px] mx-auto"><img src="/images/home/companies.png" /></figure></span>
 
             <span className="basis-[50%] flex flex-col items-center md:items-start gap-2 justify-center">
-              <span className="max-w-[280px] md:max-w-full xl:max-w-[500px] text-center md:text-left">
+              <span className="max-w-[280px] md:max-w-full xl:max-w-[500px] text-center md:text-left spaceGrotesk">
                 <h2 className="font-bold">Working With <span className="text-purple-700">Exiting</span> Companies</h2>
+                <span>We collaborate with established companies to drive innovation.Together, we create impactful solutions for long-term growth.</span>
               </span>
-              <span>description</span>
               <span><button>Get Started</button></span>
             </span>
           </div>
@@ -91,7 +91,7 @@ export default function Home() {
 
       <section className="mt-10 md:mt-20">
         <div className="container">
-          Newest Jobs For You
+          <h2 className="font-bold text-center spaceGrotesk">Newest <span className="text-purple-700">Jobs</span> For You</h2>
         </div>
       </section>
     </Layout>

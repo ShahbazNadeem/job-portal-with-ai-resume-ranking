@@ -19,10 +19,10 @@ const Footer = () => {
               <span className="mb-6 text-md font-semibold text-gray-900 uppercase ">Earn with us</span>
               <ul className="text-gray-500  font-medium">
                 <li className="mb-4">
-                  <Link href="/recruter-dashboard" className="hover:underline">Recruiter Panel</Link>
+                  <Link href="/recruiter-dashboard" className="hover:underline">Recruiter Panel</Link>
                 </li>
                 <li>
-                  <Link href="/Admin-dashboard" className="hover:underline">Admin Dashboard</Link>
+                  <Link href="/admin-dashboard" className="hover:underline">Admin Dashboard</Link>
                 </li>
               </ul>
             </div>

@@ -1,29 +1,20 @@
 'use client';
 
 import React from 'react';
-import { CartProvider } from '@/context/CartContext';
-import { RestaurantProvider } from '@/context/RestaurantContext';
-import { AllFoodProvider } from '@/context/AllFoodContext';
-import { DeliveryPartnerProvider } from '@/context/DeliveryPartnerContext';
 import { UserProvider } from '@/context/UserContext';
-import { RestaurantAdminProvider } from '@/context/RestaurantAdminContext';
+import { RecruiterProvider } from '@/context/RecruiterContext';
+import { AdminProvider } from '@/context/AdminContext';
 
 export function Provider({ children }) {
     return (
         <>
-            <UserProvider>
-                <DeliveryPartnerProvider>
-                    <RestaurantAdminProvider>
-                        <RestaurantProvider>
-                            <AllFoodProvider>
-                                <CartProvider>
-                                    {children}
-                                </CartProvider>
-                            </AllFoodProvider>
-                        </RestaurantProvider>
-                    </RestaurantAdminProvider>
-                </DeliveryPartnerProvider>
-            </UserProvider>
+            <AdminProvider>
+                <RecruiterProvider>
+                    <UserProvider>
+                        {children}
+                    </UserProvider>
+                </RecruiterProvider>
+            </AdminProvider>
         </>
     )
 }
