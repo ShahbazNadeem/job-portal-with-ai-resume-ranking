@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <Layout>
       <section className="">
-        <div className="container relative border">
+        <div className="container relative">
           <div className="min-h-[90vh] md:max-w-[700px] lg:max-w-[980px] mx-auto flex justify-center flex-col">
             <div className="flex justify-center gap-5 md:gap-8 lg:gap-12 xl:gap-14 text-center flex-col">
               <h1 className="spaceGrotesk">One Step Closer To <span>Your Dream Job</span></h1>
