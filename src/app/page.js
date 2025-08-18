@@ -5,7 +5,7 @@ import Card1 from "./_components/cards/Card1";
 export default function Home() {
   return (
     <Layout>
-      <section className="">
+      <section>
         <div className="container relative">
           <div className="min-h-[90vh] md:max-w-[700px] lg:max-w-[980px] mx-auto flex justify-center flex-col">
             <div className="flex justify-center gap-5 md:gap-8 lg:gap-12 xl:gap-14 text-center flex-col">
@@ -43,14 +43,14 @@ export default function Home() {
 
           </div>
 
-          <figure className="hidden lg:block absolute top-[35%] right-0 w-[90px] lg:w-[120px] h-auto"><img src="/images/home/arrow2.png" className="w-full h-auto"/></figure>
+          <figure className="hidden lg:block absolute top-[35%] right-0 w-[90px] lg:w-[120px] h-auto"><img src="/images/home/arrow2.png" className="w-full h-auto" /></figure>
 
-          <figure className="absolute bottom-0 w-[150px] md:w-[250px] h-auto"><img src="/images/home/arrow1.png" className="w-full h-auto"/></figure>
+          <figure className="absolute bottom-0 w-[150px] md:w-[250px] h-auto"><img src="/images/home/arrow1.png" className="w-full h-auto" /></figure>
 
           <div className="hidden lg:block max-w-[280px] absolute w-full top-[10%] left-[3%]">
             <Card1 className='border -rotate-45 backdrop-blur-xs' />
           </div>
-          <div className="hidden lg:block max-w-[240px] absolute w-full top-[57%] right-0">
+          <div className="hidden lg:block max-w-[240px] absolute w-full top-[55%] right-8">
             <Card1 className='border rotate-45' />
           </div>
           <div className="max-w-[180px] absolute w-full bottom-[0%] md:bottom-[10%] left-[40%] md:left-[30%] lg:left-[20%]">
@@ -61,8 +61,38 @@ export default function Home() {
 
         </div>
       </section>
-      <section>
 
+      <section>
+        <div className="container">
+          <div className="curved-rectangle flex flex-col gap-3 justify-center flex-wrap md:flex-row items-center md:justify-around">
+            <figure className="w-[200px] h-auto"><img src="/images/home/frame11.png" alt='' className="w-full h-auto" /></figure>
+            <figure className="w-[200px] h-auto"><img src="/images/home/frame2.png" alt='' className="w-full h-auto" /></figure>
+            <figure className="w-[200px] h-auto"><img src="/images/home/frame3.png" alt='' className="w-full h-auto" /></figure>
+            <figure className="w-[200px] h-auto"><img src="/images/home/frame4.png" alt='' className="w-full h-auto" /></figure>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 md:mt-20">
+        <div className="container">
+          <div className="flex justify-between flex-col md:flex-row gap-5">
+            <span className="basis-[50%] flex justify-center items-center"><figure className="w-[300px] md:w-[400px] mx-auto"><img src="/images/home/companies.png" /></figure></span>
+
+            <span className="basis-[50%] flex flex-col items-center md:items-start gap-2 justify-center">
+              <span className="max-w-[280px] md:max-w-full xl:max-w-[500px] text-center md:text-left">
+                <h2 className="font-bold">Working With <span className="text-purple-700">Exiting</span> Companies</h2>
+              </span>
+              <span>description</span>
+              <span><button>Get Started</button></span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 md:mt-20">
+        <div className="container">
+          Newest Jobs For You
+        </div>
       </section>
     </Layout>
   );
