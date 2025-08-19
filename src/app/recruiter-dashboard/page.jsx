@@ -2,11 +2,12 @@
 import React from "react";
 import { useRecruiter } from "@/context/RecruiterContext";
 import RecruiterSigninSwitcher from "../_components/recruiter/RecruiterSigninSwitcher";
+import DashboardHeader from "../_components/dashboardlayout/DashboardHeader";
 
-const Page = () => {
+const RecruiterDashboard = ({ children }) => {
     const { recruiter } = useRecruiter();
 
-    if (!recruiter) {
+    if (recruiter) {
         return <>
             <section>
                 <div className="bg-[url('/images/login/userLogin.jpg')] bg-cover bg-center min-h-screen">
@@ -25,10 +26,11 @@ const Page = () => {
     }
 
     return (
-        <div>
-            <h1>Welcome {recruiter.name}</h1>
+        <div className="container">
+            <DashboardHeader />
+            {children}
         </div>
     );
 };
 
-export default Page;
+export default RecruiterDashboard;
