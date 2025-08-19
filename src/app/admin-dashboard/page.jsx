@@ -53,9 +53,9 @@ export default function Page() {
   if (!admin) {
     return (
       <div className="container">
-        <div className="min-h-screen flex justify-center items-center">
-          <div className="basis-[50%] flex justify-center items-center"><Lottie animationData={adminLogin} /></div>
-          <div className="basis-[50%] flex justify-center items-center"><AdminLogin /></div>
+        <div className="min-h-screen flex justify-center items-center gap-10">
+          <div className="hidden lg:block basis-[50%] flex justify-center items-center "><Lottie animationData={adminLogin} /></div>
+          <div className="lg:basis-[50%]"><AdminLogin /></div>
         </div>
       </div>
     )

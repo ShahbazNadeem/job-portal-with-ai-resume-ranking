@@ -93,8 +93,11 @@ button {
   mask: radial-gradient(calc(var(--c)*1%) 100% at 50% calc(-100%*cos(asin(50/var(--c)))), #0000 calc(100% - 1px), #000);
 }
 .blob {
-  aspect-ratio: 1;
-  clip-path: shape(from 87.45% 45.02%,curve to 92.48% 56.45% with 90.99% 50.00%,curve to 92.05% 69.35% with 93.97% 62.91%,curve to 82.42% 77.15% with 90.14% 75.80%,curve to 71.01% 83.22% with 74.69% 78.49%,curve to 61.91% 91.53% with 67.33% 87.95%,curve to 49.74% 96.95% with 56.49% 95.12%,curve to 38.70% 91.46% with 42.99% 98.79%,curve to 25.99% 85.79% with 34.41% 84.13%,curve to 15.38% 80.54% with 17.56% 87.44%,curve to 14.30% 66.90% with 13.20% 73.65%,curve to 13.33% 55.08% with 15.41% 60.16%,curve to 11.20% 44.30% with 11.25% 50.00%,curve to 11.95% 32.32% with 11.14% 38.59%,curve to 16.84% 21.25% with 12.75% 26.06%,curve to 27.31% 15.38% with 20.92% 16.44%,curve to 38.83% 11.12% with 33.70% 14.32%,curve to 50.39% 5.23% with 43.95% 7.93%,curve to 62.85% 5.60% with 56.83% 2.53%,curve to 72.70% 14.03% with 68.88% 8.67%,curve to 79.11% 24.51% with 76.53% 19.39%,curve to 82.80% 34.84% with 81.69% 29.63%,curve to 87.45% 45.02% with 83.91% 40.04%);
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background-color: #4a6cd1;
+  clip-path: shape(from 94.14% 38.16%,curve to 89.06% 64.60% with 96.36% 52.92%,curve to 71.68% 85.71% with 81.77% 76.28%,curve to 48.43% 91.18% with 61.59% 95.14%,curve to 24.84% 79.90% with 35.27% 87.21%,curve to 8.08% 59.77% with 14.41% 72.59%,curve to 9.34% 34.80% with 1.75% 46.96%,curve to 27.81% 14.30% with 16.93% 22.64%,curve to 53.23% 5.53% with 38.69% 5.95%,curve to 79.85% 14.26% with 67.77% 5.11%,curve to 94.14% 38.16% with 91.92% 23.40%);
 }
 
 @media (max-width: 1200px) {
@@ -133,7 +136,6 @@ button {
 
   .curved-rectangle {
     --c: 70;
-    padding-bottom: 0px;
   }
 }
 

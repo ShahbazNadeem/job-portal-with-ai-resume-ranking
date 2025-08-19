@@ -65,10 +65,10 @@ export default function Home() {
       <section>
         <div className="container">
           <div className="curved-rectangle flex flex-col gap-3 justify-center flex-wrap md:flex-row items-center md:justify-around">
-            <figure className="w-[200px] h-auto"><img src="/images/home/frame11.png" alt='' className="w-full h-auto" /></figure>
-            <figure className="w-[200px] h-auto"><img src="/images/home/frame2.png" alt='' className="w-full h-auto" /></figure>
-            <figure className="w-[200px] h-auto"><img src="/images/home/frame3.png" alt='' className="w-full h-auto" /></figure>
-            <figure className="w-[200px] h-auto"><img src="/images/home/frame4.png" alt='' className="w-full h-auto" /></figure>
+            <figure className="w-[150px] lg:w-[200px] h-auto"><img src="/images/home/frame11.png" alt='' className="w-full h-auto" /></figure>
+            <figure className="w-[70px] lg:w-[100px] h-auto"><img src="/images/home/frame2.png" alt='' className="w-full h-auto" /></figure>
+            <figure className="w-[150px] lg:w-[200px] h-auto"><img src="/images/home/frame3.png" alt='' className="w-full h-auto" /></figure>
+            <figure className="w-[150px] lg:w-[200px] h-auto"><img src="/images/home/frame4.png" alt='' className="w-full h-auto" /></figure>
           </div>
         </div>
       </section>
