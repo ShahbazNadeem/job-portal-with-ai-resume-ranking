@@ -2,7 +2,7 @@
 import React from "react";
 import { useRecruiter } from "@/context/RecruiterContext";
 import RecruiterSigninSwitcher from "../_components/recruiter/RecruiterSigninSwitcher";
-import DashboardHeader from "../_components/dashboardlayout/DashboardHeader";
+import RecuiterDashboardHeader from "../_components/recuiterdashboardlayout/RecuiterDashboardHeader";
 
 const RecruiterDashboard = ({ children }) => {
     const { recruiter } = useRecruiter();
@@ -26,10 +26,14 @@ const RecruiterDashboard = ({ children }) => {
     }
 
     return (
-        <div className="container">
-            <DashboardHeader />
-            {children}
-        </div>
+        <section className="bg-gray-100 min-h-screen">
+            <div className="container ">
+                <div className="flex gap-5 items-center">
+                    <RecuiterDashboardHeader /><h2 className='font-semibold'>Welcome</h2>
+                </div>
+                {children}
+            </div>
+        </section>
     );
 };
 

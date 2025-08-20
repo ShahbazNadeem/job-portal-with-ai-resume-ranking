@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Icons } from '@/data/Imports'
 import Link from 'next/link';
 
-const DashboardSidebar = () => {
+const RecuiterDashboardSidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
     return (
         <div>
@@ -29,16 +29,13 @@ const DashboardSidebar = () => {
                 <div className="py-10 px-2 flex flex-col gap-10">
                     <ul className="flex flex-col gap-5 font-marcellus text-[16]">
                         <li><Link href='/'>Home</Link></li>
+                        <li><Link href='/recruiter-dashboard/home'>Dashboard</Link></li>
                         <li><Link href='/recruiter-dashboard/postjob'>Post a new Job</Link></li>
-                        <li><Link href='contact-us'>Contact us</Link></li>
                     </ul>
                 </div>
-                <Link href='/' className='text-blue-600 underline'>
-                    Register
-                </Link>
             </div>
         </div>
     )
 }
 
-export default DashboardSidebar;
+export default RecuiterDashboardSidebar;
