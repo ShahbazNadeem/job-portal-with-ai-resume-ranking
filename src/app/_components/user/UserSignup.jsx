@@ -1,7 +1,6 @@
 "use client"
 // import { fetchWithFallback } from '@/utils/fetchWithFallback';
 import React, { useState } from 'react'
-// import { ToastContainer, toast } from 'react-toastify';
 
 const UserSignUp = () => {
   const [users, setUsers] = useState({
@@ -140,17 +139,31 @@ const UserSignUp = () => {
     <>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto sm:max-w-xl">
         <div className="w-full">
-          <div className="space-y-4 md:space-y-6">
+          <div className="flex flex-col items-center gap-5">
             <h3 className="md:text-2xl text-center text-white">
-              Create your new account!
+              Create your new account with
             </h3>
             {signedUp &&
               <h3 className="md:text-2xl text-center text-white">
                 Now login first
               </h3>
             }
-            <form>
-            {/* <form onSubmit={handleUserUserSignUp}> */}
+
+            <span>
+              <button onClick={() => signIn("google")} className='relative bg-blue-600 px-7 rounded-md py-2 text-white'>
+                <span className='absolute top-[34%] left-[8px]'><img src="/images/logo/google.png" alt="gooogle" className='w-[15px] ' /></span>
+                Sign in with google
+              </button>
+            </span>
+
+            <span>
+              <button onClick={() => signIn("google")} className='relative bg-black px-7 rounded-md py-2 text-white'>
+                <span className='absolute top-[34%] left-[8px]'><img src="/images/logo/linkedin.png" alt="gooogle" className='w-[15px] ' /></span>
+                Sign in with linkedIn
+              </button>
+            </span>
+
+            {/* <form>
               <div className="flex flex-wrap gap-2 text-white">
                 <div className="w-full sm:w-fit flex flex-col gap-2">
                   <div>
@@ -186,11 +199,10 @@ const UserSignUp = () => {
 
 
               <button type="submit" className="w-full mt-5">Sign up</button>
-            </form>
+            </form> */}
           </div>
         </div>
       </div>
-      {/* <ToastContainer /> */}
     </>
   )
 }

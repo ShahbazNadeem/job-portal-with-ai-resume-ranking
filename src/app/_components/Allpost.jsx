@@ -39,6 +39,18 @@ const Allpost = ({ initialJobs = [] }) => {
             postedBy: "Recruiter456",
             closeJob: true,
         },
+        {
+            id: 3,
+            title: "Backend Developer",
+            description: "Looking for a Node.js developer with API experience.",
+            location: "New York",
+            salaryRange: "$70,000 - $100,000",
+            jobType: "Full-time",
+            requiredSkills: ["Node.js", "Express", "MongoDB"],
+            experienceRequired: "3+ years",
+            postedBy: "Recruiter456",
+            closeJob: false,
+        },
     ];
 
     return (

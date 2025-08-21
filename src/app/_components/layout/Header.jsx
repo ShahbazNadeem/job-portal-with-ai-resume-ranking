@@ -2,8 +2,10 @@
 import { Icons } from '@/data/Imports'
 import Link from 'next/link';
 import React, { useState } from 'react'
+import { useUser } from "@/context/UserContext";
 
 const Header = () => {
+  const { user } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -18,16 +20,21 @@ const Header = () => {
             <li><Link href='contact-us'>Contact us</Link></li>
           </ul>
 
-          <div className="flex gap-2">
-            <Link href='/user-signin'><button>Sign in</button></Link>
-            <div className="hidden md:block">
-              <span className="btn-gradient-border">
-                <span className="btn-gradient-border-inner bg-white">
-                  Get Registered
+          {user ?
+            <Link href='/user-signin'><button className='button1'>profile</button></Link>
+            :
+            <div className="flex gap-2">
+              <Link href='/user-signin'><button className='button1'>Sign in</button></Link>
+              <div className="hidden md:block">
+                <span className="btn-gradient-border">
+                  <span className="btn-gradient-border-inner bg-white">
+                    Get Registered
+                  </span>
                 </span>
-              </span>
+              </div>
             </div>
-          </div>
+
+          }
 
         </div>
       </div>
