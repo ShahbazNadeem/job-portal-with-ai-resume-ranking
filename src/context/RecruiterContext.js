@@ -9,7 +9,7 @@ export const RecruiterProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedRecruiter = localStorage.getItem("recruiter");
+    const storedRecruiter = localStorage.getItem("recruiterJobPortal");
     if (storedRecruiter) {
       setRecruiter(JSON.parse(storedRecruiter));
     }
@@ -18,12 +18,12 @@ export const RecruiterProvider = ({ children }) => {
 
   const login = (data) => {
     setRecruiter(data);
-    localStorage.setItem("recruiter", JSON.stringify(data));
+    localStorage.setItem("recruiterJobPortal", JSON.stringify(data));
   };
 
   const logout = () => {
     setRecruiter(null);
-    localStorage.removeItem("recruiter");
+    localStorage.removeItem("recruiterJobPortal");
   };
 
   return (
