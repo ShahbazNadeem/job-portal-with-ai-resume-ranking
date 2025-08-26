@@ -10,7 +10,7 @@ const page = () => {
     <RecruiterDashboard>
       <section>
         <div className="container">
-          <Allpost recruuiterId={recruiter?.id} />
+          <Allpost recruuiterId={recruiter?.id} /> 
         </div>
       </section>
     </RecruiterDashboard>
