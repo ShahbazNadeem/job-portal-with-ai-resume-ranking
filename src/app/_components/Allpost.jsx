@@ -1,8 +1,7 @@
 'use client'
 import React, { useState } from "react";
 
-const Allpost = ({ initialJobs = [] }) => {
-    //   const [jobs, setJobs] = useState(initialJobs);
+const Allpost = ({ recruuiterId }) => {
 
     const handleDelete = (id) => {
         if (confirm("Are you sure you want to delete this job?")) {
@@ -56,6 +55,7 @@ const Allpost = ({ initialJobs = [] }) => {
     return (
         <div className="w-full max-w-4xl mx-auto px-4 py-6">
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Job Listings</h2>
+            {recruuiterId}
 
             {jobs.length > 0 ? (
                 <ul className="space-y-4">
@@ -110,3 +110,110 @@ const Allpost = ({ initialJobs = [] }) => {
 };
 
 export default Allpost;
+// 'use client'
+// import React, { useEffect, useState } from "react";
+// import axios from "axios";
+
+// const Allpost = ({ recruiterId }) => {
+//     const [jobs, setJobs] = useState([]);
+//     const [loading, setLoading] = useState(true);
+
+//     // Fetch jobs from API
+//     useEffect(() => {
+//         const fetchJobs = async () => {
+//             try {
+//                 const { data } = await axios.get("/api/recruiter/jobpost");
+//                 if (data.success) {
+//                     // If recruiterId exists, filter jobs
+//                     const filteredJobs = recruiterId
+//                         ? data.jobs.filter((job) => job.postedBy === recruiterId)
+//                         : data.jobs;
+
+//                     setJobs(filteredJobs);
+//                 }
+//             } catch (error) {
+//                 console.error("❌ Error fetching jobs:", error);
+//             } finally {
+//                 setLoading(false);
+//             }
+//         };
+
+//         fetchJobs();
+//     }, [recruiterId]);
+
+//     const handleDelete = (id) => {
+//         if (confirm("Are you sure you want to delete this job?")) {
+//             setJobs((prevJobs) => prevJobs.filter((job) => job._id !== id));
+//             // Later: Call API to delete from DB
+//         }
+//     };
+
+//     const handleUpdate = (id) => {
+//         alert(`Update job with ID: ${id}`);
+//         // Later: Navigate to update page or open modal
+//     };
+
+//     if (loading) return <p className="text-center">Loading jobs...</p>;
+
+//     return (
+//         <div className="w-full max-w-4xl mx-auto px-4 py-6">
+//             <h2 className="text-2xl font-bold mb-6 text-gray-800">Job Listings</h2>
+//             {recruiterId && (
+//                 <p className="text-sm text-gray-500 mb-4">
+//                     Showing jobs posted by recruiter: <span className="font-semibold">{recruiterId}</span>
+//                 </p>
+//             )}
+
+//             {jobs.length > 0 ? (
+//                 <ul className="space-y-4">
+//                     {jobs.map((job) => (
+//                         <li
+//                             key={job._id}
+//                             className="flex flex-col sm:flex-row sm:items-center justify-between p-5 border border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300"
+//                         >
+//                             {/* Job Info */}
+//                             <div className="flex-1 space-y-1">
+//                                 <h3 className="text-lg font-semibold text-gray-900">{job.title}</h3>
+//                                 <p className="text-gray-600 text-sm">{job.description}</p>
+
+//                                 <div className="text-gray-700 text-sm flex flex-wrap gap-3 mt-2">
+//                                     <span><span className="font-medium">📍 Location:</span> {job.location}</span>
+//                                     <span><span className="font-medium">💰 Salary:</span> {job.salaryRange}</span>
+//                                     <span><span className="font-medium">🕒 Type:</span> {job.jobType}</span>
+//                                     <span><span className="font-medium">⚡ Exp:</span> {job.experienceRequired}</span>
+//                                     <span className="text-xs text-gray-500">👤 {job.postedBy}</span>
+//                                     <span
+//                                         className={`text-xs font-semibold px-2 py-1 rounded-lg ${job.closeJob ? "bg-red-100 text-red-600" : "bg-green-100 text-green-600"
+//                                             }`}
+//                                     >
+//                                         {job.closeJob ? "Closed" : "Open"}
+//                                     </span>
+//                                 </div>
+//                             </div>
+
+//                             {/* Buttons */}
+//                             <div className="mt-4 sm:mt-0 flex gap-2">
+//                                 <button
+//                                     onClick={() => handleUpdate(job._id)}
+//                                     className="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg shadow hover:bg-indigo-700 hover:shadow-md transition"
+//                                 >
+//                                     Update
+//                                 </button>
+//                                 <button
+//                                     onClick={() => handleDelete(job._id)}
+//                                     className="px-4 py-2 bg-red-500 text-white text-sm rounded-lg shadow hover:bg-red-600 hover:shadow-md transition"
+//                                 >
+//                                     Delete
+//                                 </button>
+//                             </div>
+//                         </li>
+//                     ))}
+//                 </ul>
+//             ) : (
+//                 <p className="text-center text-gray-500">No jobs posted yet.</p>
+//             )}
+//         </div>
+//     );
+// };
+
+// export default Allpost;

@@ -1,8 +1,13 @@
 'use client'
 import React, { useState } from 'react'
 import RecruiterDashboard from '../page'
+import { useRecruiter } from '@/context/RecruiterContext';
+import axios from 'axios';
 
-const page = ({recruiterId}) => {
+const page = ({ recruiterId }) => {
+    const { recruiter } = useRecruiter();
+    // console.log()
+
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -22,11 +27,38 @@ const page = ({recruiterId}) => {
         })
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log('Form submitted:', formData)
-        // 🔥 Here you can call your API to save the job post
-    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const { data } = await axios.post("/api/recruiter/jobPost", {
+                ...formData,
+                postedBy: recruiter?.id, // attach recruiter id
+                closeJob: false,
+            });
+
+            if (data.success) {
+                alert("✅ Job posted successfully!");
+
+                setFormData({
+                    title: "",
+                    description: "",
+                    location: "",
+                    salaryRange: "",
+                    jobType: "",
+                    requiredSkills: "",
+                    experienceRequired: "",
+                    postedBy: recruiter?.id,
+                    closeJob: false,
+                });
+            } else {
+                alert("❌ Failed to post job");
+            }
+        } catch (error) {
+            console.error("❌ Error posting job:", error);
+            alert(error.response?.data?.message || "❌ Something went wrong");
+        }
+    };
     return (
         <RecruiterDashboard>
             <div className="flex justify-center items-center min-h-screen p-4">

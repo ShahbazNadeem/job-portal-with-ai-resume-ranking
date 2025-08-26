@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecruiter } from "@/context/RecruiterContext";
 import RecruiterSigninSwitcher from "../_components/recruiter/RecruiterSigninSwitcher";
 import RecuiterDashboardHeader from "../_components/recuiterdashboardlayout/RecuiterDashboardHeader";
@@ -25,12 +25,16 @@ const RecruiterDashboard = ({ children }) => {
         </>;
     }
 
+    if (recruiter) {
+        useEffect(() => {
+            document.title = 'Dashboard';
+        }, []);
+    }
+
     return (
         <section className="bg-gray-100 min-h-screen">
             <div className="container ">
-                <div className="flex gap-5 items-center">
-                    <RecuiterDashboardHeader /><h2 className='font-semibold'>Welcome</h2>
-                </div>
+                    <RecuiterDashboardHeader />
                 {children}
             </div>
         </section>
