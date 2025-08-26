@@ -68,7 +68,7 @@ const RecruiterSignup = () => {
             </div>
 
 
-            <button type="submit" className="w-full mt-5">Sign up</button>
+            <button type="submit" className="w-full mt-5 button1">Sign up</button>
           </form>
         </div>
       </div>

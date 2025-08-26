@@ -1,6 +1,7 @@
 "use client"
 // import { fetchWithFallback } from '@/utils/fetchWithFallback';
 import React, { useState } from 'react'
+import { signIn } from "next-auth/react"
 
 const UserSignUp = () => {
   const [users, setUsers] = useState({
@@ -157,7 +158,7 @@ const UserSignUp = () => {
             </span>
 
             <span>
-              <button onClick={() => signIn("google")} className='relative bg-black px-7 rounded-md py-2 text-white'>
+              <button onClick={() => signIn("github")} className='relative bg-black px-7 rounded-md py-2 text-white'>
                 <span className='absolute top-[34%] left-[8px]'><img src="/images/logo/linkedin.png" alt="gooogle" className='w-[15px] ' /></span>
                 Sign in with linkedIn
               </button>

@@ -26,7 +26,7 @@ const RecruiterLogin = () => {
               <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Password</label>
               <input type="password" name="password" id="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
-            <button type="submit" className="w-full">Sign in</button>
+            <button type="submit" className="w-full button1">Sign in</button>
           </form>
         </div>
       </div>

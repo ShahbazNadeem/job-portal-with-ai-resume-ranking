@@ -12,12 +12,14 @@ const page = () => {
 
   if (session) {
     return (
-      <div className='container h-screen flex flex-col justify-center items-center'>
-        <span>No need to sign in </span>
-        <span>Your are already Signed in as <span className='text-blue-800'>{session.user.email}</span></span>
-        <span>Back to <Link href='/' className='text-blue-800 underline'>Home</Link></span>
-        <button onClick={() => { signOut(); logout(); }}>Sign out</button>
-      </div>
+      <Layout>
+        <div className='container h-screen flex flex-col justify-center items-center'>
+          <span>No need to sign in </span>
+          <span>Your are Signed in as <span className='text-blue-800'>{session.user.email}</span></span>
+          <span>Back to <Link href='/' className='text-blue-800 underline'>Home</Link></span>
+          <button onClick={() => { signOut(); logout(); }}>Sign out</button>
+        </div>
+      </Layout>
     )
   }
   return (

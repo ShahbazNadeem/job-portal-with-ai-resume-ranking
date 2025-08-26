@@ -7,7 +7,7 @@ import RecuiterDashboardHeader from "../_components/recuiterdashboardlayout/Recu
 const RecruiterDashboard = ({ children }) => {
     const { recruiter } = useRecruiter();
 
-    if (recruiter) {
+    if (!recruiter) {
         return <>
             <section>
                 <div className="bg-[url('/images/login/userLogin.jpg')] bg-cover bg-center min-h-screen">
