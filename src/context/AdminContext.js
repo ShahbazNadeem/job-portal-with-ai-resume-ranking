@@ -9,7 +9,7 @@ export const AdminProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedAdmin = localStorage.getItem("admin");
+    const storedAdmin = localStorage.getItem("adminJobPortal");
     if (storedAdmin) {
       setAdmin(JSON.parse(storedAdmin));
     }
@@ -18,12 +18,12 @@ export const AdminProvider = ({ children }) => {
 
   const login = (data) => {
     setAdmin(data);
-    localStorage.setItem("admin", JSON.stringify(data));
+    localStorage.setItem("adminJobPortal", JSON.stringify(data));
   };
 
   const logout = () => {
     setAdmin(null);
-    localStorage.removeItem("admin");
+    localStorage.removeItem("adminJobPortal");
   };
 
   const hasPermission = (role) => {

@@ -39,7 +39,7 @@ const AdminLogin = () => {
 
       <div className="w-full flex flex-col gap-5 rounded-2xl border border-gray-300 bg-[#ffffff65] backdrop-blur-lg p-6 md:p-8 shadow-sm">
         <div className=" flex flex-col gap-2">
-          <h2 className="spaceGrotesk font-semibold">Admin Login</h2>
+          <h2 className="spaceGrotesk font-semibold"><span className='text-blue-600'>Admin</span> Login</h2>
           <p className="text-sm text-gray-500">Sign in to access your admin panel</p>
         </div>
 
@@ -103,7 +103,7 @@ const AdminLogin = () => {
               />
               <span>Remember me</span>
             </label>
-            <Link href="/forgot-password" className="text-sm text-purple-600 hover:underline">
+            <Link href="/forgot-password" className="text-sm text-blue-600 hover:underline">
               Forgot password?
             </Link>
           </div>
@@ -111,7 +111,7 @@ const AdminLogin = () => {
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-purple-600 px-4 py-2.5 text-white transition hover:bg-purple-700 disabled:opacity-60"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-white transition hover:bg-bkue-900 disabled:opacity-60"
           >
             <Icons.login size={18} />
             {loading ? 'Signing in…' : 'Sign In'}
@@ -120,7 +120,7 @@ const AdminLogin = () => {
 
         <p className="text-center text-sm text-gray-500 ">
           Need access?{' '}
-          <Link href="/contact" className="text-purple-600 hover:underline">
+          <Link href="/contact" className="text-blue-600 hover:underline">
             Contact the super admin
           </Link>
         </p>

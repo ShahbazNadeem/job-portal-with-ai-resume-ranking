@@ -28,33 +28,42 @@ export default function Page() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
+    setErr(null);
 
-    // try {
-    //   const res = await fetch("/api/users", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(form),
-    //   });
+    if (!email || !password) {
+      setErr("Please fill in both fields.");
+      return;
+    }
 
-    //   const data = await res.json();
-    //   if (res.ok) {
-    //     setMessage("✅ User added successfully!");
-    //     setForm({ UserName: "", UserAge: "", Useremail: "" });
-    //   } else {
-    //     setMessage(`❌ ${data.message}`);
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    //   setMessage("❌ Failed to add user");
-    // }
+    try {
+      setLoading(true);
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ adminEmail: email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+
+      localStorage.setItem("adminJobPortal", JSON.stringify(data.admin));
+      // window.location.href = "/admin/dashboard";
+    } catch (e) {
+      setErr(e?.message || "Login failed. Try again.");
+    } finally {
+      setLoading(false);
+    }
   };
+
 
   if (!admin) {
     return (
       <div className="container">
         <div className="min-h-screen flex justify-center items-center gap-10">
-          <div className="hidden lg:block basis-[50%] flex justify-center items-center "><Lottie animationData={adminLogin}  style={{ height: 600 }}/></div>
+          <div className="hidden lg:block basis-[50%] flex justify-center items-center "><Lottie animationData={adminLogin} style={{ height: 600 }} /></div>
           <div className="lg:basis-[50%]"><AdminLogin /></div>
         </div>
       </div>
@@ -63,7 +72,7 @@ export default function Page() {
 
   return (
     <Layout>
-      {/* <section className="min-h-screen">
+      <section className="min-h-screen">
 
         <div className="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg p-6">
           <h1 className="text-2xl font-bold mb-4 text-center">Add New User</h1>
@@ -107,7 +116,7 @@ export default function Page() {
 
           {message && <p className="mt-4 text-center">{message}</p>}
         </div>
-      </section> */}
+      </section>
     </Layout>
   );
 }
