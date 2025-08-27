@@ -1,6 +1,7 @@
 import { Icons } from "@/data/Imports";
 import Layout from "./_components/layout/Layout";
 import Card1 from "./_components/cards/Card1";
+import Allpost from "./_components/Allpost";
 
 export default function Home() {
   return (
@@ -92,6 +93,7 @@ export default function Home() {
       <section className="mt-10 md:mt-20">
         <div className="container">
           <h2 className="font-bold text-center spaceGrotesk">Newest <span className="text-purple-700">Jobs</span> For You</h2>
+          <Allpost />
         </div>
       </section>
     </Layout>
