@@ -12,7 +12,7 @@ const page = () => {
         <div className="container">
           <Allpost recruuiterId={recruiter?.id} /> 
         </div>
-      </section>
+      </section> 
     </RecruiterDashboard>
   )
 }
