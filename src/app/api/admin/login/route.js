@@ -1,4 +1,4 @@
-import dbConnect from "@/lib/db";
+import dbConnect from "@/lib/dbConnect";
 import { adminSchema } from "@/models/adminModel";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
