@@ -26,9 +26,14 @@ export async function POST(req) {
 export async function GET() {
   try {
     await dbConnect();
-    const jobs = await jobSchema.find({});
+    const jobs = await jobSchema.find();
+
     return NextResponse.json({ success: true, jobs });
   } catch (error) {
-    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
+    console.error("❌ Error fetching jobs:", error);
+    return NextResponse.json(
+      { success: false, message: "Failed to fetch jobs" },
+      { status: 500 }
+    );
   }
 }
