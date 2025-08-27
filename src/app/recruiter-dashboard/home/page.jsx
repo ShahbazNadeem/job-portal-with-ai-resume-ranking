@@ -16,5 +16,5 @@ const page = () => {
     </RecruiterDashboard>
   )
 }
-
+ 
 export default page
