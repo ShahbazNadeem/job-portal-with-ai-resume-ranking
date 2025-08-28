@@ -18,8 +18,8 @@ const RecuiterDashboardSidebar = () => {
             {/* Off-Canvas Drawer */}
             <div className={`bg-[#F8F8F8] fixed top-0 left-0 z-50 h-screen p-4 overflow-y-auto w-80 transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
                 <div className="flex justify-between items-center">
-                    <figure className="w-12 h-12">
-                        <Link href='/'><img src="/images/logo/logoTest.png" alt="Logo" className="w-full h-full" /></Link>
+                    <figure className="w-[120px]">
+                        <Link href='/'><img src="/images/logo/HireGenie1.png" alt="Logo" className="w-full h-full" /></Link>
                     </figure>
                     <span onClick={() => setIsOpen(false)} className=" text-gray-400 ">
                         <Icons.close size={28} />

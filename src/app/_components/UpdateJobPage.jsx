@@ -1,9 +1,12 @@
 'use client';
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useJobs } from "@/context/JobsContext";
+import axios from "axios";
 
 export default function UpdateJobPage({ jobId }) {
   const router = useRouter();
+  const { jobs, refreshJobs } = useJobs();
 
   const [job, setJob] = useState({
     title: "",
@@ -16,37 +19,30 @@ export default function UpdateJobPage({ jobId }) {
 
   const [loading, setLoading] = useState(false);
 
-  // Fetch job details
   useEffect(() => {
-    const fetchJob = async () => {
-      try {
-        const res = await fetch(`/api/recruiter/jobPost/${jobId}`);
-        const data = await res.json();
-        if (data.success) setJob(data.job);
-      } catch (err) {
-        console.error("Error fetching job:", err);
-      }
-    };
-    fetchJob();
-  }, [jobId]);
+    if (jobs.length > 0) {
+      const foundJob = jobs.find((j) => j._id === jobId);
+      if (foundJob) setJob(foundJob);
+    }
+  }, [jobs, jobId]);
 
   const handleChange = (e) => {
     setJob({ ...job, [e.target.name]: e.target.value });
   };
 
+
+
   const handleUpdate = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
-      const res = await fetch(`/api/recruiter/jobPost/${jobId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(job),
-      });
-      const data = await res.json();
+      const { data } = await axios.put(`/api/recruiter/jobPost/${jobId}`, job);
+
       if (data.success) {
         alert("✅ Job updated successfully!");
-        router.push("/recruiter-dashboard");
+        refreshJobs();
+        router.push("/recruiter-dashboard/home");
       } else {
         alert("❌ " + (data.error || "Update failed"));
       }
@@ -84,16 +80,15 @@ export default function UpdateJobPage({ jobId }) {
             />
           </div>
 
-          {/* Company */}
+          {/* Description */}
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">Company</label>
-            <input
-              type="text"
-              name="company"
-              value={job.company}
+            <label className="block text-gray-700 font-semibold mb-2">Job Description</label>
+            <textarea
+              name="description"
+              value={job.description}
               onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 shadow-sm focus:ring-2 focus:ring-purple-500 focus:outline-none transition"
+              rows="5"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 shadow-sm focus:ring-2 focus:ring-purple-500 focus:outline-none transition resize-none"
             />
           </div>
 
@@ -115,7 +110,7 @@ export default function UpdateJobPage({ jobId }) {
               <input
                 type="text"
                 name="salary"
-                value={job.salary}
+                value={job.salaryRange}
                 onChange={handleChange}
                 placeholder="$50k - $80k"
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 shadow-sm focus:ring-2 focus:ring-purple-500 focus:outline-none transition"
@@ -123,34 +118,38 @@ export default function UpdateJobPage({ jobId }) {
             </div>
           </div>
 
-          {/* Job Type */}
-          <div>
-            <label className="block text-gray-700 font-semibold mb-2">Job Type</label>
-            <select
-              name="type"
-              value={job.type}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white text-gray-800 shadow-sm focus:ring-2 focus:ring-purple-500 focus:outline-none transition"
-            >
-              <option>Full-Time</option>
-              <option>Part-Time</option>
-              <option>Internship</option>
-              <option>Contract</option>
-              <option>Remote</option>
-            </select>
+          {/* Job Type + Experience */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-gray-700 font-semibold mb-2">Job Type</label>
+              <select
+                name="type"
+                value={job.type}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white text-gray-800 shadow-sm focus:ring-2 focus:ring-purple-500 focus:outline-none transition"
+              >
+                <option>Full-Time</option>
+                <option>Part-Time</option>
+                <option>Internship</option>
+                <option>Contract</option>
+                <option>Remote</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-gray-700 font-semibold mb-2">Experience Required</label>
+              <input
+                type="text"
+                name="company"
+                value={job.experienceRequired}
+                onChange={handleChange}
+                required
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 shadow-sm focus:ring-2 focus:ring-purple-500 focus:outline-none transition"
+              />
+            </div>
           </div>
 
-          {/* Description */}
-          <div>
-            <label className="block text-gray-700 font-semibold mb-2">Job Description</label>
-            <textarea
-              name="description"
-              value={job.description}
-              onChange={handleChange}
-              rows="5"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 shadow-sm focus:ring-2 focus:ring-purple-500 focus:outline-none transition resize-none"
-            />
-          </div>
+
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -163,11 +162,10 @@ export default function UpdateJobPage({ jobId }) {
             </button>
             <button
               type="submit"
-              className={`w-full sm:w-1/2 py-3 rounded-lg font-semibold text-white shadow-md transform transition ${
-                loading
-                  ? "bg-purple-400 cursor-not-allowed"
-                  : "bg-purple-600 hover:bg-purple-700 hover:scale-[1.02]"
-              }`}
+              className={`w-full sm:w-1/2 py-3 rounded-lg font-semibold text-white shadow-md transform transition ${loading
+                ? "bg-purple-400 cursor-not-allowed"
+                : "bg-purple-600 hover:bg-purple-700 hover:scale-[1.02]"
+                }`}
               disabled={loading}
             >
               {loading ? "Updating..." : "Update Job"}

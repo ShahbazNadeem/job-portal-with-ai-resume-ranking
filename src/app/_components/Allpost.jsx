@@ -1,12 +1,12 @@
 'use client';
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useJobs } from "@/context/JobsContext";
 
 const Allpost = ({ recruuiterId }) => {
-  const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { jobs, loading, refreshJobs } = useJobs();
   const router = useRouter();
-  
+
   const handleDelete = async (id) => {
     const confirmDelete = confirm("⚠️ Do you really want to delete this post?");
     if (!confirmDelete) return;
@@ -20,7 +20,7 @@ const Allpost = ({ recruuiterId }) => {
 
       if (data.success) {
         alert("✅ Job deleted successfully!");
-        setJobs(jobs.filter((job) => job._id !== id)); // update UI
+        refreshJobs(); // 🔥 refresh jobs from DB
       } else {
         alert("❌ " + (data.error || "Failed to delete job"));
       }
@@ -31,38 +31,12 @@ const Allpost = ({ recruuiterId }) => {
   };
 
   const handleUpdate = (id) => {
-    // alert(`Update job with ID: ${id}`);
     router.push(`/recruiter-dashboard/update-job/${id}`);
   };
 
-  useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const res = await fetch(`/api/recruiter/jobPost`);
-        const data = await res.json();
-
-        if (data.success) {
-          let filteredJobs = data.jobs;
-
-          // 🔎 Apply filter on frontend
-          if (recruuiterId) {
-            filteredJobs = filteredJobs.filter(
-              (job) => job.postedBy === recruuiterId
-            );
-          }
-
-          setJobs(filteredJobs);
-        }
-      } catch (error) {
-        console.error("❌ Failed to fetch jobs:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchJobs();
-  }, [recruuiterId]);
-
+  const filteredJobs = recruuiterId
+    ? jobs.filter((job) => job.postedBy === recruuiterId)
+    : jobs;
   const JobSkeleton = () => (
     <li className="flex flex-col sm:flex-row sm:items-center justify-between p-5 border border-gray-200 rounded-xl bg-white shadow-sm animate-pulse">
       {/* Job Info */}
@@ -84,7 +58,6 @@ const Allpost = ({ recruuiterId }) => {
     </li>
   );
 
-
   if (loading) {
     return (
       <div className="w-full max-w-4xl mx-auto px-4 py-6">
@@ -103,9 +76,9 @@ const Allpost = ({ recruuiterId }) => {
     <div className="w-full max-w-4xl mx-auto px-4 py-6">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">Job Listings</h2>
 
-      {jobs.length > 0 ? (
+      {filteredJobs.length > 0 ? (
         <ul className="space-y-4">
-          {jobs.map((job) => (
+          {filteredJobs.map((job) => (
             <li
               key={job._id}
               className="flex flex-col sm:flex-row sm:items-center justify-between p-5 border border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300"

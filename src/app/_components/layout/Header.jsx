@@ -12,7 +12,7 @@ const Header = () => {
       <div className='px-5 py-2 bg-white '>
         <div className="container flex justify-between items-center">
           <span className='md:hidden'><Icons.menuIcon size={28} onClick={() => setIsOpen(true)} /></span>
-          <div className="flex justify-center items-center"><figure className='w-[35px] h-[35px] md:w-[150px] md:h-[50px]'><Link href="/"><img src="/images/logo/HireGenie1.png" alt="logo" className='w-full h-auto' /></Link></figure></div>
+          <div className="flex justify-center items-center"><figure className='w-[150px]'><Link href="/"><img src="/images/logo/HireGenie1.png" alt="logo" className='w-full h-auto' /></Link></figure></div>
 
           <ul className='hidden md:flex gap-10'>
             <li><Link href='/'>Home</Link></li>
@@ -48,8 +48,8 @@ const Header = () => {
       {/* Off-Canvas Drawer */}
       <div className={`bg-[#F8F8F8] fixed top-0 left-0 z-50 h-screen p-4 overflow-y-auto w-80 transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex justify-between items-center">
-          <figure className="w-12 h-12">
-            <img src="/images/logo/logoTest.png" alt="Logo" className="w-full h-full" />
+          <figure className="w-[120px]">
+            <img src="/images/logo/HireGenie1.png" alt="Logo" className="w-full h-full" />
           </figure>
           <span onClick={() => setIsOpen(false)} className=" text-gray-400 ">
             <Icons.close size={28} />

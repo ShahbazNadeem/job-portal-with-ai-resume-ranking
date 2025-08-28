@@ -3,11 +3,13 @@ import React, { useState } from 'react'
 import RecruiterDashboard from '../page'
 import { useRecruiter } from '@/context/RecruiterContext';
 import axios from 'axios';
+import { useJobs } from "@/context/JobsContext"
+import { useRouter } from 'next/navigation';
 
 const page = () => {
     const { recruiter } = useRecruiter();
-    console.log('recruiter data', recruiter)
-
+    const { refreshJobs } = useJobs();
+    const router = useRouter
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -38,7 +40,8 @@ const page = () => {
 
             if (data.success) {
                 alert("✅ Job posted successfully!");
-
+                refreshJobs();
+                router.push("/recruiter-dashboard/home");
                 setFormData({
                     title: "",
                     description: "",
@@ -50,6 +53,7 @@ const page = () => {
                     postedBy: recruiter?.id,
                     closeJob: false,
                 });
+
             } else {
                 alert("❌ Failed to post job");
             }

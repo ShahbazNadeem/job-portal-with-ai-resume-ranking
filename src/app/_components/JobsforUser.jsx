@@ -1,41 +1,17 @@
 'use client';
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useJobs } from "@/context/JobsContext";
 
 const JobsforUser = ({ recruuiterId }) => {
-  const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { jobs, loading } = useJobs();
 
   const handleApply = (id) => {
     alert(`Update job with ID: ${id}`);
   };
 
-  useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const res = await fetch(`/api/recruiter/jobPost`);
-        const data = await res.json();
-
-        if (data.success) {
-          let filteredJobs = data.jobs;
-
-          // 🔎 Apply filter on frontend
-          if (recruuiterId) {
-            filteredJobs = filteredJobs.filter(
-              (job) => job.postedBy === recruuiterId
-            );
-          }
-
-          setJobs(filteredJobs);
-        }
-      } catch (error) {
-        console.error("❌ Failed to fetch jobs:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchJobs();
-  }, [recruuiterId]);
+  const filteredJobs = recruuiterId
+    ? jobs.filter((job) => job.postedBy === recruuiterId)
+    : jobs;
 
   const JobSkeleton = () => (
     <li className="flex flex-col sm:flex-row sm:items-center justify-between p-5 border border-gray-200 rounded-xl bg-white shadow-sm animate-pulse">
@@ -70,13 +46,11 @@ const JobsforUser = ({ recruuiterId }) => {
     );
   }
 
-
   return (
     <div className="w-full max-w-4xl mx-auto px-4 py-6">
-
-      {jobs.length > 0 ? (
+      {filteredJobs.length > 0 ? (
         <ul className="space-y-4">
-          {jobs.map((job) => (
+          {filteredJobs.map((job) => (
             <li
               key={job._id}
               className="flex flex-col sm:flex-row sm:items-center justify-between p-5 border border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300"

@@ -24,7 +24,7 @@ export async function DELETE(req, { params }) {
     return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
   }
 }
-
+ 
 // job post update api
 export async function PUT(req, { params }) {
   try {
