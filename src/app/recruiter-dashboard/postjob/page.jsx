@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const page = ({ recruiterId }) => {
     const { recruiter } = useRecruiter();
-    // console.log()
+    console.log('recruiter data', recruiter)
 
     const [formData, setFormData] = useState({
         title: '',
@@ -16,7 +16,7 @@ const page = ({ recruiterId }) => {
         jobType: '',
         requiredSkills: '',
         experienceRequired: '',
-        postedBy: recruiterId || '',
+        postedBy: recruiter,
         closeJob: false, // false = job is open
     })
     const handleChange = (e) => {

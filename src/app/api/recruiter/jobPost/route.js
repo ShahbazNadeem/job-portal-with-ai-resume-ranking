@@ -13,7 +13,17 @@ export async function POST(req) {
       body.requiredSkills = body.requiredSkills.split(",").map(skill => skill.trim());
     }
 
-    const newJob = await jobSchema.create(body);
+    // const newJob = await jobSchema.create(body);
+    const newJob = await jobSchema.create({
+      ...body,
+      postedBy: {
+        id: body.postedBy?.id,
+        companyName: body.postedBy?.companyName,
+        companyEmail: body.postedBy?.companyEmail,
+        contactNumber: body.postedBy?.contactNumber,
+      },
+    });
+
 
     return NextResponse.json({ success: true, job: newJob }, { status: 201 });
   } catch (error) {

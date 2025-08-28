@@ -93,6 +93,7 @@ const Allpost = ({ recruuiterId }) => {
             >
               {/* Job Info */}
               <div className="flex-1 space-y-1">
+                <span className="text-xs text-gray-500">Posted at {job.updatedAt}</span>
                 <h3 className="text-lg font-semibold text-gray-900">{job.title}</h3>
                 <p className="text-gray-600 text-sm">{job.description}</p>
 
