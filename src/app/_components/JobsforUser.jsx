@@ -1,38 +1,12 @@
 'use client';
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const Allpost = ({ recruuiterId }) => {
+const JobsforUser = ({ recruuiterId }) => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
-  
-  const handleDelete = async (id) => {
-    const confirmDelete = confirm("⚠️ Do you really want to delete this post?");
-    if (!confirmDelete) return;
 
-    try {
-      const res = await fetch(`/api/recruiter/jobPost/${id}`, {
-        method: "DELETE",
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        alert("✅ Job deleted successfully!");
-        setJobs(jobs.filter((job) => job._id !== id)); // update UI
-      } else {
-        alert("❌ " + (data.error || "Failed to delete job"));
-      }
-    } catch (error) {
-      console.error("❌ Delete error:", error);
-      alert("Something went wrong while deleting job.");
-    }
-  };
-
-  const handleUpdate = (id) => {
-    // alert(`Update job with ID: ${id}`);
-    router.push(`/recruiter-dashboard/update-job/${id}`);
+  const handleApply = (id) => {
+    alert(`Update job with ID: ${id}`);
   };
 
   useEffect(() => {
@@ -79,7 +53,6 @@ const Allpost = ({ recruuiterId }) => {
       {/* Buttons */}
       <div className="mt-4 sm:mt-0 flex gap-2">
         <div className="h-8 w-20 bg-gray-200 rounded"></div>
-        <div className="h-8 w-20 bg-gray-200 rounded"></div>
       </div>
     </li>
   );
@@ -88,7 +61,6 @@ const Allpost = ({ recruuiterId }) => {
   if (loading) {
     return (
       <div className="w-full max-w-4xl mx-auto px-4 py-6">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Job Listings</h2>
         <ul className="space-y-4">
           {[1, 2, 3].map((n) => (
             <JobSkeleton key={n} />
@@ -101,7 +73,6 @@ const Allpost = ({ recruuiterId }) => {
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4 py-6">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Job Listings</h2>
 
       {jobs.length > 0 ? (
         <ul className="space-y-4">
@@ -134,16 +105,10 @@ const Allpost = ({ recruuiterId }) => {
               {/* Buttons */}
               <div className="mt-4 sm:mt-0 flex gap-2">
                 <button
-                  onClick={() => handleUpdate(job._id)}
-                  className="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg shadow hover:bg-indigo-700 hover:shadow-md transition"
+                  onClick={() => handleApply(job._id)}
+                  className="button1 text-sm"
                 >
-                  Update
-                </button>
-                <button
-                  onClick={() => handleDelete(job._id)}
-                  className="px-4 py-2 bg-red-500 text-white text-sm rounded-lg shadow hover:bg-red-600 hover:shadow-md transition"
-                >
-                  Delete
+                  Apply
                 </button>
               </div>
             </li>
@@ -156,4 +121,4 @@ const Allpost = ({ recruuiterId }) => {
   );
 };
 
-export default Allpost;
+export default JobsforUser;

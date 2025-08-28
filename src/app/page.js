@@ -1,7 +1,7 @@
 import { Icons } from "@/data/Imports";
 import Layout from "./_components/layout/Layout";
 import Card1 from "./_components/cards/Card1";
-import Allpost from "./_components/Allpost";
+import JobsforUser from "./_components/JobsforUser";
 
 export default function Home() {
   return (
@@ -76,6 +76,17 @@ export default function Home() {
 
       <section className="mt-10 md:mt-20">
         <div className="container">
+          <h2 className="font-semibold text-center spaceGrotesk">
+            Newest <span className="text-purple-700">Jobs</span> For You
+          </h2>
+          <div className="mt-3 max-h-[650px] overflow-y-auto hide-scrollbar">
+            <JobsforUser />
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 md:mt-20">
+        <div className="container">
           <div className="flex justify-between flex-col md:flex-row gap-5">
             <span className="basis-[50%] flex justify-center items-center"><figure className="w-[300px] md:w-[400px] mx-auto"><img src="/images/home/companies.png" /></figure></span>
 
@@ -90,12 +101,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-10 md:mt-20">
-        <div className="container">
-          <h2 className="font-bold text-center spaceGrotesk">Newest <span className="text-purple-700">Jobs</span> For You</h2>
-          <Allpost />
-        </div>
-      </section>
+
     </Layout>
   );
 }

@@ -4,7 +4,7 @@ import RecruiterDashboard from '../page'
 import { useRecruiter } from '@/context/RecruiterContext';
 import axios from 'axios';
 
-const page = ({ recruiterId }) => {
+const page = () => {
     const { recruiter } = useRecruiter();
     console.log('recruiter data', recruiter)
 
@@ -16,7 +16,6 @@ const page = ({ recruiterId }) => {
         jobType: '',
         requiredSkills: '',
         experienceRequired: '',
-        postedBy: recruiter,
         closeJob: false, // false = job is open
     })
     const handleChange = (e) => {
@@ -33,7 +32,7 @@ const page = ({ recruiterId }) => {
         try {
             const { data } = await axios.post("/api/recruiter/jobPost", {
                 ...formData,
-                postedBy: recruiter?.id, // attach recruiter id
+                postedBy: recruiter, // attach recruiter id
                 closeJob: false,
             });
 

@@ -22,8 +22,17 @@
   --font-roboto: "Roboto", sans-serif;
   --font-arimo: "Arimo", sans-serif;
   --font-grotesk: "Space Grotesk", sans-serif;
-  ;
 }
+/* Hide scrollbar but keep scrolling */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
 
 .spaceGrotesk {
   font-family: var(--font-grotesk);
