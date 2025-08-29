@@ -6,6 +6,8 @@ import { useJobs } from "@/context/JobsContext";
 const Allpost = ({ recruuiterId }) => {
   const { jobs, loading, refreshJobs } = useJobs();
   const router = useRouter();
+  console.log('recruuiterId', recruuiterId)
+
 
   const handleDelete = async (id) => {
     const confirmDelete = confirm("⚠️ Do you really want to delete this post?");
@@ -20,7 +22,7 @@ const Allpost = ({ recruuiterId }) => {
 
       if (data.success) {
         alert("✅ Job deleted successfully!");
-        refreshJobs(); // 🔥 refresh jobs from DB
+        refreshJobs();
       } else {
         alert("❌ " + (data.error || "Failed to delete job"));
       }
@@ -35,8 +37,9 @@ const Allpost = ({ recruuiterId }) => {
   };
 
   const filteredJobs = recruuiterId
-    ? jobs.filter((job) => job.postedBy === recruuiterId)
+    ? jobs.filter((job) => job.postedBy.id === recruuiterId)
     : jobs;
+    
   const JobSkeleton = () => (
     <li className="flex flex-col sm:flex-row sm:items-center justify-between p-5 border border-gray-200 rounded-xl bg-white shadow-sm animate-pulse">
       {/* Job Info */}

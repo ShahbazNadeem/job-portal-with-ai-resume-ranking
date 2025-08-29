@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 const page = () => {
     const { recruiter } = useRecruiter();
     const { refreshJobs } = useJobs();
-    const router = useRouter
+    const router = useRouter()
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -59,7 +59,6 @@ const page = () => {
             }
         } catch (error) {
             console.error("❌ Error posting job:", error);
-            alert(error.response?.data?.message || "❌ Something went wrong");
         }
     };
     return (
