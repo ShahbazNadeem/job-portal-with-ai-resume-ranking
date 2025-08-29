@@ -1,13 +1,12 @@
 'use client';
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import React from "react";
 import { useJobs } from "@/context/JobsContext";
 
 const Allpost = ({ recruuiterId }) => {
   const { jobs, loading, refreshJobs } = useJobs();
   const router = useRouter();
-  console.log('recruuiterId', recruuiterId)
-
+  const pathname = usePathname();
 
   const handleDelete = async (id) => {
     const confirmDelete = confirm("⚠️ Do you really want to delete this post?");
@@ -32,14 +31,18 @@ const Allpost = ({ recruuiterId }) => {
     }
   };
 
+
   const handleUpdate = (id) => {
-    router.push(`/recruiter-dashboard/update-job/${id}`);
+    if (pathname.includes("admin-dashboard")) {
+      router.push(`/admin-dashboard/update-job/${id}`);
+    } else {
+      router.push(`/recruiter-dashboard/update-job/${id}`);
+    }
   };
 
   const filteredJobs = recruuiterId
     ? jobs.filter((job) => job.postedBy.id === recruuiterId)
     : jobs;
-    
   const JobSkeleton = () => (
     <li className="flex flex-col sm:flex-row sm:items-center justify-between p-5 border border-gray-200 rounded-xl bg-white shadow-sm animate-pulse">
       {/* Job Info */}

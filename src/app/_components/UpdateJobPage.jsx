@@ -1,11 +1,12 @@
 'use client';
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useJobs } from "@/context/JobsContext";
 import axios from "axios";
 
 export default function UpdateJobPage({ jobId }) {
   const router = useRouter();
+  const pathname = usePathname();
   const { jobs, refreshJobs } = useJobs();
 
   const [job, setJob] = useState({
@@ -42,7 +43,12 @@ export default function UpdateJobPage({ jobId }) {
       if (data.success) {
         alert("✅ Job updated successfully!");
         refreshJobs();
-        router.push("/recruiter-dashboard/home");
+        // router.push("/recruiter-dashboard/home"); 
+        if (pathname.includes("admin-dashboard")) {
+          router.push(`/admin-dashboard/home`);
+        } else {
+          router.push(`/recruiter-dashboard/home`);
+        }
       } else {
         alert("❌ " + (data.error || "Update failed"));
       }

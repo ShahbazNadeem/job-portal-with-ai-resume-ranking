@@ -1,69 +1,20 @@
 "use client";
-
-import { useState } from "react";
-import Layout from "../_components/layout/Layout";
 import { useAdmin } from "@/context/AdminContext";
 import AdminLogin from "../_components/admin/AdminLogin";
 import Lottie from "lottie-react";
 import adminLogin from '../../../public/images/lottieFiles/adminLogin.json'
+import AdminDashboardHeader from "../_components/admindashboardlayout/AdminDashboardHeader";
 
-export default function Page() {
+
+export default function Page({ children }) {
 
   const { admin } = useAdmin()
 
-  const [form, setForm] = useState({
-    UserName: "",
-    UserAge: "",
-    Useremail: "",
-  });
-
-  const [message, setMessage] = useState("");
-
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setErr(null);
-
-    if (!email || !password) {
-      setErr("Please fill in both fields.");
-      return;
-    }
-
-    try {
-      setLoading(true);
-      const res = await fetch("/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ adminEmail: email, password }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || "Login failed");
-      }
-
-      localStorage.setItem("adminJobPortal", JSON.stringify(data.admin));
-      // window.location.href = "/admin/dashboard";
-    } catch (e) {
-      setErr(e?.message || "Login failed. Try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-
-  if (!admin) {
+  if (admin) {
     return (
       <div className="container">
         <div className="min-h-screen flex justify-center items-center gap-10">
-          <div className="hidden lg:block basis-[50%] flex justify-center items-center "><Lottie animationData={adminLogin} style={{ height: 600 }} /></div>
+          <div className="hidden basis-[50%] lg:flex justify-center items-center "><Lottie animationData={adminLogin} style={{ height: 600 }} /></div>
           <div className="lg:basis-[50%]"><AdminLogin /></div>
         </div>
       </div>
@@ -71,52 +22,11 @@ export default function Page() {
   }
 
   return (
-    <Layout>
-      <section className="min-h-screen">
-
-        <div className="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg p-6">
-          <h1 className="text-2xl font-bold mb-4 text-center">Add New User</h1>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              name="UserName"
-              placeholder="Name"
-              value={form.UserName}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 outline-none"
-              required
-            />
-            <input
-              type="number"
-              name="UserAge"
-              placeholder="Age"
-              value={form.UserAge}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 outline-none"
-              required
-            />
-            <input
-              type="email"
-              name="Useremail"
-              placeholder="Email"
-              value={form.Useremail}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 outline-none"
-              required
-            />
-
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
-            >
-              Add User
-            </button>
-          </form>
-
-          {message && <p className="mt-4 text-center">{message}</p>}
-        </div>
-      </section>
-    </Layout>
+    <section className="bg-gray-100 min-h-screen">
+            <div className="container ">
+                    <AdminDashboardHeader />
+                {children}
+            </div>
+        </section>
   );
 }

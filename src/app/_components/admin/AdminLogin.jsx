@@ -120,7 +120,7 @@ const AdminLogin = () => {
 
         <p className="text-center text-sm text-gray-500 ">
           Need access?{' '}
-          <Link href="/contact" className="text-blue-600 hover:underline">
+          <Link href="/contact-us" className="text-blue-600 hover:underline">
             Contact the super admin
           </Link>
         </p>
