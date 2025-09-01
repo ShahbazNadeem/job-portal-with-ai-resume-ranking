@@ -7,9 +7,9 @@ const DashboardHeader = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { recruiter,logout } = useRecruiter();
     return (
-        <div className='flex justify-between items-center pt-3'>
+        <div className='flex justify-between items-center pt-3 mx-5 md:mx-0'>
             <RecuiterDashboardSidebar />
-            <span className='font-semibold text-4xl'>Recruiter Dashboard </span>
+            <span className='font-semibold text-xl md:text-4xl'>Recruiter Dashboard </span>
             <span className='flex gap-5 items-center'>
                 <span className='text-2xl font-semibold text-blue-900'> <span>{recruiter?.companyName}</span></span>
                 <div className="relative inline-block text-left">

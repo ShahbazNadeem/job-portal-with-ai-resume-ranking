@@ -8,9 +8,9 @@ const AdminDashboardHeader = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { admin, logout } = useAdmin()
     return (
-        <div className='flex justify-between items-center pt-3'>
+        <div className='flex justify-between items-center pt-3 mx-5 md:mx-0'>
             <AdminDashboardSidebar />
-            <span className='font-semibold text-4xl'>Admin Dashboard </span>
+            <span className='font-semibold text-xl md:text-4xl'>Admin Dashboard </span>
             <span className='flex gap-5 items-center'>
                 <span className='text-2xl font-semibold text-blue-900'> <span>{admin?.companyName}</span></span>
                 <div className="relative inline-block text-left">
@@ -39,16 +39,13 @@ const AdminDashboardHeader = () => {
                         <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-20">
                             <ul className="py-1">
                                 <li>
-                                    <a
-                                        href="#"
-                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                    >
-                                        To manage your profile please contact <Link href='/contact-us'>super admin</Link>
-                                    </a>
+                                    <Link href='/contact-us' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        To manage your profile please contact super admin
+                                    </Link>
                                 </li>
                                 <li className='cursor-pointer'>
                                     <a
-                                        onClick={()=>logout()}
+                                        onClick={() => logout()}
                                         className="block px-4 py-2 text-sm text-red-600 hover:bg-red-100"
                                     >
                                         Logout

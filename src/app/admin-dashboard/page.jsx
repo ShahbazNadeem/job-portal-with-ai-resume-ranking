@@ -4,11 +4,18 @@ import AdminLogin from "../_components/admin/AdminLogin";
 import Lottie from "lottie-react";
 import adminLogin from '../../../public/images/lottieFiles/adminLogin.json'
 import AdminDashboardHeader from "../_components/admindashboardlayout/AdminDashboardHeader";
+import { useEffect } from "react";
 
 
-export default function Page({ children }) {
+export default function AdminDashboard({ children }) {
 
   const { admin } = useAdmin()
+
+  if (admin) {
+    useEffect(() => {
+      document.title = 'Admin Dashboard';
+    }, []);
+  }
 
   if (admin) {
     return (
@@ -23,10 +30,10 @@ export default function Page({ children }) {
 
   return (
     <section className="bg-gray-100 min-h-screen">
-            <div className="container ">
-                    <AdminDashboardHeader />
-                {children}
-            </div>
-        </section>
+      <div className="container ">
+        <AdminDashboardHeader />
+        {children}
+      </div>
+    </section>
   );
 }

@@ -30,7 +30,7 @@ const AdminDashboardSidebar = () => {
                     <ul className="flex flex-col gap-5 font-marcellus text-[16]">
                         <li><Link href='/admin-dashboard/home'>Dashboard</Link></li>
                         <li><Link href='/admin-dashboard/recruiters'>Manage Recruiters</Link></li>
-                        {/* <li><Link href='/recruiter-dashboard'>Recruiter Profile</Link></li> */}
+                        <li><Link href='/admin-dashboard/ai-ranked-resume'>Ai Ranked Resume</Link></li>
                     </ul>
                 </div>
             </div>
