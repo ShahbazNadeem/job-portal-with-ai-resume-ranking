@@ -27,22 +27,48 @@ export const authOptions = {
     session: {
         strategy: 'jwt',
     },
+    // callbacks: {
+    //     async jwt({ token, user }) {
+    //         if (user) {
+    //             token.id = user.Id || user.id;
+    //             token.name = user.Name || user.name;
+    //             token.email = user.Email || user.email;
+    //         }
+    //         return token;
+    //     },
+    //     async session({ session, token }) {
+    //         session.user.id = token.id;
+    //         session.user.name = token.name;
+    //         session.user.email = token.email;
+    //         return session;
+    //     },
+
+    // },
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-                token.id = user.Id || user.id;
-                token.name = user.Name || user.name;
-                token.email = user.Email || user.email;
+                token.id = user.id;
+                token.name = user.name;
+                token.email = user.email;
+
+                // Call API to ensure user is saved in DB
+                await fetch(`${process.env.NEXTAUTH_URL}/api/user`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: user.name,
+                        email: user.email,
+                        image: user.image,
+                    }),
+                });
             }
             return token;
         },
         async session({ session, token }) {
             session.user.id = token.id;
-            session.user.name = token.name;
-            session.user.email = token.email;
             return session;
         },
-
     },
+
     secret: process.env.AUTH_SECRET,
 };

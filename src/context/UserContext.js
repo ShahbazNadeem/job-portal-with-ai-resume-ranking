@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const { data: session } = useSession(); // 👈 Get session from NextAuth
+  const { data: session } = useSession(); // 👈 Getting session from NextAuth
   const [user, setUser] = useState(null);
 
   useEffect(() => {

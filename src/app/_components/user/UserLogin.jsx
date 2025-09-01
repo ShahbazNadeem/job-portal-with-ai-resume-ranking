@@ -1,6 +1,6 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useState } from 'react'
+import React from 'react'
 import { signIn } from "next-auth/react"
 
 const UserLogin = () => {
