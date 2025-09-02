@@ -5,6 +5,7 @@ import UserSigninSwitcher from '../_components/user/UserSigninSwitcher'
 import { useSession, signOut } from "next-auth/react"
 import Link from 'next/link'
 import { useUser } from "@/context/UserContext";
+import UploadResume from '../_components/UploadResume'
 
 const page = () => {
   const { logout, user } = useUser();
@@ -36,6 +37,7 @@ const page = () => {
         <img src={session.user.image} alt="" />
         <span>Back to <Link href='/' className='text-blue-800 underline'>Home</Link></span>
         <button onClick={() => { signOut(); logout(); }}>Sign out</button>
+        <UploadResume/>
       </div>
     </Layout>
   )
