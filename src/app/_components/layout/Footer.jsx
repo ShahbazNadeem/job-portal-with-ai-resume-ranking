@@ -9,8 +9,8 @@ const Footer = () => {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <Link href="/" className="flex items-center">
-              <figure className="w-20 h-20">
-                <img src="/images/logo/logoTest.png" alt="Logo" className="w-full h-full" />
+              <figure className="w-[200px]">
+                <img src="/images/logo/HireGenie1.png" alt="Logo" className="w-full h-full" />
               </figure>
             </Link>
           </div>
