@@ -1,22 +1,20 @@
-// "use client";
+// 'use client';
 // import React, { createContext, useContext, useState, useEffect } from "react";
 // import { useSession } from "next-auth/react";
 
 // const UserContext = createContext();
 
 // export const UserProvider = ({ children }) => {
-//   const { data: session } = useSession(); // 👈 Getting session from NextAuth
+//   const { data: session } = useSession();
 //   const [user, setUser] = useState(null);
 
 //   useEffect(() => {
 //     if (session?.user) {
-//       localStorage.setItem("JobportalUser", JSON.stringify(session.user));
-//       setUser(session.user);
+//       const storedUser = JSON.parse(localStorage.getItem("JobportalUser")) || session.user;
+//       setUser(storedUser);
 //     } else {
 //       const storedUser = localStorage.getItem("JobportalUser");
-//       if (storedUser) {
-//         setUser(JSON.parse(storedUser));
-//       }
+//       if (storedUser) setUser(JSON.parse(storedUser));
 //     }
 //   }, [session]);
 
@@ -30,16 +28,22 @@
 //     setUser(null);
 //   };
 
+//   const updateUser = (updatedUserData) => {
+//     localStorage.setItem("JobportalUser", JSON.stringify(updatedUserData));
+//     setUser(updatedUserData);
+//   };
+
 //   return (
-//     <UserContext.Provider value={{ user, login, logout }}>
+//     <UserContext.Provider value={{ user, login, logout, updateUser }}>
 //       {children}
 //     </UserContext.Provider>
 //   );
 // };
 
 // export const useUser = () => useContext(UserContext);
+// ----------------------------------------------------------------------------------------
 'use client';
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { useSession } from "next-auth/react";
 
 const UserContext = createContext();
@@ -49,29 +53,30 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    const stored = localStorage.getItem("JobportalUser");
+    const storedUser = stored ? JSON.parse(stored) : null;
+
     if (session?.user) {
-      const storedUser = JSON.parse(localStorage.getItem("JobportalUser")) || session.user;
-      setUser(storedUser);
+      setUser(storedUser || session.user);
     } else {
-      const storedUser = localStorage.getItem("JobportalUser");
-      if (storedUser) setUser(JSON.parse(storedUser));
+      setUser(storedUser || null);
     }
   }, [session]);
 
-  const login = (userData) => {
+  const login = useCallback((userData) => {
     localStorage.setItem("JobportalUser", JSON.stringify(userData));
     setUser(userData);
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem("JobportalUser");
     setUser(null);
-  };
+  }, []);
 
-  const updateUser = (updatedUserData) => {
+  const updateUser = useCallback((updatedUserData) => {
     localStorage.setItem("JobportalUser", JSON.stringify(updatedUserData));
     setUser(updatedUserData);
-  };
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, login, logout, updateUser }}>
