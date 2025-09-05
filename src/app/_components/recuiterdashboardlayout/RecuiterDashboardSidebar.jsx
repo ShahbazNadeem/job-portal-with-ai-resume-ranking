@@ -31,6 +31,7 @@ const RecuiterDashboardSidebar = () => {
                         <li><Link href='/recruiter-dashboard/home'>Dashboard</Link></li>
                         {/* <li><Link href='/recruiter-dashboard'>Recruiter Profile</Link></li> */}
                         <li><Link href='/recruiter-dashboard/postjob'>Post a new Job</Link></li>
+                        <li><Link href='/recruiter-dashboard/ai-ranked-candidates'>Candidates Ranked</Link></li>
                     </ul>
                 </div>
             </div>

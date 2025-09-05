@@ -3,7 +3,7 @@ import { useRouter, usePathname } from "next/navigation";
 import React from "react";
 import { useJobs } from "@/context/JobsContext";
 
-const Allpost = ({ recruuiterId }) => {
+const Allpost = ({ recruiterId }) => {
   const { jobs, loading, refreshJobs } = useJobs();
   const router = useRouter();
   const pathname = usePathname();
@@ -40,8 +40,8 @@ const Allpost = ({ recruuiterId }) => {
     }
   };
 
-  const filteredJobs = recruuiterId
-    ? jobs.filter((job) => job.postedBy.id === recruuiterId)
+  const filteredJobs = recruiterId
+    ? jobs.filter((job) => job.postedBy.id === recruiterId)
     : jobs;
   const JobSkeleton = () => (
     <li className="flex flex-col sm:flex-row sm:items-center justify-between p-5 border border-gray-200 rounded-xl bg-white shadow-sm animate-pulse">
