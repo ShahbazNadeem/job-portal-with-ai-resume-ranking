@@ -11,10 +11,7 @@ const dbConnect = async () => {
   if (isConnected) return;
 
   try {
-    const db = await mongoose.connect(connectionStr, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const db = await mongoose.connect(connectionStr);
 
     isConnected = db.connections[0].readyState;
     console.log("✅ MongoDB Connected");

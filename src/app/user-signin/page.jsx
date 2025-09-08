@@ -496,6 +496,18 @@ export default function UserProfilePage() {
           <span className="text-2xl font-bold text-gray-800">{userData?.name}</span>
           <p className="text-gray-600">{userData?.email}</p>
           <button
+            onClick={() => router.push(`/user-signin/applied-jobs/${userData._id}`)}
+            className="mt-2 px-4 py-2 button1 w-full"
+          >
+            Applied Jobs
+          </button>
+          <button
+            onClick={() => router.push(`/user/update/${userData._id}`)}
+            className="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700 w-full"
+          >
+            Update Profile
+          </button>
+          <button
             onClick={() => {
               signOut();
               logout();
@@ -503,12 +515,6 @@ export default function UserProfilePage() {
             className="mt-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 w-full"
           >
             Sign Out
-          </button>
-          <button
-            onClick={() => router.push(`/user/update/${userData._id}`)}
-            className="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700 w-full"
-          >
-            Update Profile
           </button>
         </div>
 
