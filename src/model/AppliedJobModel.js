@@ -19,8 +19,13 @@ const AppliedJobModel = new mongoose.Schema(
             postedBy: String,
         },
         appliedAt: { type: Date, default: Date.now },
+        status: {
+            type: String,
+            enum: ["pending", "accepted", "declined"],
+            default: "pending",
+        },
     },
     { timestamps: true }
 );
-
-export const AppliedJobSchema =  mongoose.models?.appliedJobs || mongoose.model("appliedJobs", AppliedJobModel);
+// delete mongoose.models.AppliedJob;
+export const AppliedJobSchema = mongoose.models?.appliedJobs || mongoose.model("appliedJobs", AppliedJobModel);

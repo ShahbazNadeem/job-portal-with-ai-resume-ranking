@@ -23,12 +23,34 @@ export const AppliedJobsProvider = ({ children }) => {
     }
   };
 
+  // ✅ Update job status function
+  const updateJobStatus = async (id, status) => {
+    try {
+      const res = await fetch(`/api/applied-jobs/update-jobstatus/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status }),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setAppliedJobs((prev) =>
+          prev.map((job) => (job._id === id ? data.job : job))
+        );
+      }
+    } catch (error) {
+      console.error("❌ Error updating job status:", error);
+    }
+  };
+
   useEffect(() => {
     fetchAppliedJobs();
   }, []);
 
   return (
-    <AppliedJobsContext.Provider value={{ appliedJobs, loading, fetchAppliedJobs }}>
+    <AppliedJobsContext.Provider
+      value={{ appliedJobs, loading, fetchAppliedJobs, updateJobStatus }}
+    >
       {children}
     </AppliedJobsContext.Provider>
   );

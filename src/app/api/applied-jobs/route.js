@@ -9,7 +9,7 @@ export async function POST(req) {
         await dbConnect();
 
         const body = await req.json();
-        const { user, job, appliedAt } = body;
+        const { user, job, appliedAt, status } = body;
 
         if (!user?.id || !user?.resume) {
             return NextResponse.json(
@@ -28,6 +28,7 @@ export async function POST(req) {
         const appliedJob = await AppliedJobSchema.create({
             user,
             job,
+            status: status || "pending",
             appliedAt: appliedAt || new Date(),
         });
 

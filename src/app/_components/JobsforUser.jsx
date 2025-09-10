@@ -47,6 +47,7 @@ const JobsforUser = ({ recruuiterId }) => {
         experienceRequired: job.experienceRequired,
         postedBy: job.postedBy.id,
       },
+      status:'pending',
       appliedAt: new Date().toISOString(),
     };
 
@@ -94,7 +95,8 @@ const JobsforUser = ({ recruuiterId }) => {
               {/* Job Info */}
               <div className="flex-1 space-y-1">
                 <span className="text-xs text-gray-500">
-                  Posted at {job.updatedAt}
+                  {/* {job.updatedAt} */}
+                 Posted at  {new Date(job.appliedAt).toLocaleDateString()}
                 </span>
                 <h3 className="text-lg font-semibold text-gray-900">
                   {job.title}

@@ -5,10 +5,10 @@ import { useAppliedJobs } from "@/context/AppliedJobsContext";
 import { useRecruiter } from "@/context/RecruiterContext";
 
 const AppliedJobsPage = () => {
-  const { appliedJobs, loading } = useAppliedJobs();
+  const { appliedJobs, loading, updateJobStatus } = useAppliedJobs();
   const { recruiter } = useRecruiter();
-  console.log(recruiter)
-  console.log('appliedJobs', appliedJobs)
+  // console.log(recruiter)
+  // console.log('appliedJobs', appliedJobs)
 
   if (loading) {
     return (
@@ -78,9 +78,19 @@ const AppliedJobsPage = () => {
                   </div>
                 )}
                 <div className="mt-4 flex justify-center items-center flex-wrap gap-2">
-                  <button className='button1'>view Profile</button>
-                  <button className='bg-green-600 text-white py-2 px-3 rounded'>Accept</button>
-                  <button className='bg-red-600 text-white py-2 px-3 rounded'>Decline</button>
+                  <button className='button1'>View Profile</button>
+                  <button
+                    onClick={() => updateJobStatus(job._id, "accepted")}
+                    className='bg-green-600 text-white py-2 px-3 rounded'
+                  >
+                    Accept
+                  </button>
+                  <button
+                    onClick={() => updateJobStatus(job._id, "declined")}
+                    className='bg-red-600 text-white py-2 px-3 rounded'
+                  >
+                    Decline
+                  </button>
                 </div>
               </li>
             ))}
